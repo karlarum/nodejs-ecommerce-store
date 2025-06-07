@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Tech Store - Premium Electronics</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>The Tech Store</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/cart" class="cart-link">
+          Cart (<span id="cart-count"><%= cartCount %></span>)
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Premium Electronics & Accessories</h2>
+      <p>Discover the latest in technology with our curated selection of high-quality products.</p>
+    </section>
+
+    <section class="products">
+      <h3>Featured Products</h3>
+      <div class="product-grid">
+        <% products.forEach(product => { %>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="<%= product.image %>" alt="<%= product.name %>" onerror="this.src='/images/errorimage.jpg'">
+              <div class="product-rating">
+                ★ <%= product.rating %>
+              </div>
+            </div>
+            <div class="product-info">
+              <h4><%= product.name %></h4>
+              <p class="product-description"><%= product.description %></p>
+              <div class="product-features">
+                <% product.features.slice(0, 2).forEach(feature => { %>
+                  <span class="feature-tag"><%= feature %></span>
+                <% }) %>
+              </div>
+              <div class="product-price">$<%= product.price.toFixed(2) %></div>
+              <div class="product-actions">
+                <a href="/product/<%= product.id %>" class="btn-secondary">View Details</a>
+                <form action="/add-to-cart" method="POST" class="add-to-cart-form">
+                  <input type="hidden" name="productId" value="<%= product.id %>">
+                  <input type="hidden" name="quantity" value="1">
+                  <button type="submit" class="btn-primary">Add to Cart</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </section>
+
+  <footer>
+    <p>&copy; 2025 The Tech Store. Premium electronics for everyone.</p>
+  </footer>
+
+  <script src="/validation.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>

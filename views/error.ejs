@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error - The Tech Store</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1><a href="/">The Tech Store</a></h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/cart" class="cart-link">Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="error-page">
+      <h2><%= error %></h2>
+      <p><%= message %></p>
+      <a href="/" class="btn-primary">Return to Home</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 The Tech Store. Premium electronics for everyone.</p>
+  </footer>
+  
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= product.name %> - The Tech Store</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1><a href="/">The Tech Store</a></h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/cart" class="cart-link">
+          Cart (<span id="cart-count"><%= cartCount %></span>)
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="/">Home</a> > <%= product.category %> > <%= product.name %>
+    </div>
+
+    <div class="product-detail">
+      <div class="product-image-large">
+        <img src="<%= product.image %>" alt="<%= product.name %>" onerror="this.src='/images/errorimage.jpg'">
+      </div>
+      
+      <div class="product-info-detailed">
+        <h1><%= product.name %></h1>
+        <div class="product-rating-detailed">
+          ★ <%= product.rating %> (4.8/5.0)
+        </div>
+        
+        <p class="product-description-long"><%= product.description %></p>
+        
+        <div class="product-features-detailed">
+          <h3>Key Features:</h3>
+          <ul>
+            <% product.features.forEach(feature => { %>
+              <li><%= feature %></li>
+            <% }) %>
+          </ul>
+        </div>
+        
+        <div class="product-price-large">$<%= product.price.toFixed(2) %></div>
+        
+        <form action="/add-to-cart" method="POST" class="add-to-cart-detailed">
+          <input type="hidden" name="productId" value="<%= product.id %>">
+          <div class="quantity-selector">
+            <label for="quantity">Quantity:</label>
+            <select name="quantity" id="quantity">
+              <% for (let i = 1; i <= 10; i++) { %>
+                <option value="<%= i %>"><%= i %></option>
+              <% } %>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary btn-large">
+            Add to Cart
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <% if (relatedProducts.length > 0) { %>
+      <section class="related-products">
+        <h3>Related Products</h3>
+        <div class="product-grid">
+          <% relatedProducts.forEach(product => { %>
+            <div class="product-card">
+              <div class="product-image">
+                <img src="<%= product.image %>" alt="<%= product.name %>" onerror="this.src='/images/placeholder.jpg'">
+              </div>
+              <div class="product-info">
+                <h4><%= product.name %></h4>
+                <div class="product-price">$<%= product.price.toFixed(2) %></div>
+                <a href="/product/<%= product.id %>" class="btn-secondary">View Details</a>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </section>
+    <% } %>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 The Tech Store. Premium electronics for everyone.</p>
+  </footer>
+
+  <script src="/validation.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - The Tech Store</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1><a href="/">The Tech Store</a></h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/cart" class="cart-link active">
+          Cart (<span id="cart-count"><%= cartCount %></span>)
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h2>Your Shopping Cart</h2>
+    
+    <% if (cart.length === 0) { %>
+      <div class="empty-cart">
+        <p>Your cart is empty.</p>
+        <a href="/" class="btn-primary">Continue Shopping</a>
+      </div>
+    <% } else { %>
+      <div class="cart-content">
+        <div class="cart-items">
+          <% cart.forEach(item => { %>
+            <div class="cart-item">
+              <div class="item-image">
+                <img src="<%= item.image %>" alt="<%= item.name %>" onerror="this.src='/images/placeholder.jpg'">
+              </div>
+              <div class="item-details">
+                <h4><%= item.name %></h4>
+                <p class="item-price">$<%= item.price.toFixed(2) %> each</p>
+              </div>
+              <div class="item-quantity">
+                <form action="/update-cart" method="POST" class="quantity-form">
+                  <input type="hidden" name="productId" value="<%= item.id %>">
+                  <label for="qty-<%= item.id %>">Qty:</label>
+                  <select name="quantity" id="qty-<%= item.id %>" onchange="this.form.submit()">
+                    <% for (let i = 1; i <= 10; i++) { %>
+                      <option value="<%= i %>" <%= item.quantity === i ? 'selected' : '' %>><%= i %></option>
+                    <% } %>
+                  </select>
+                </form>
+              </div>
+              <div class="item-total">
+                $<%= (item.price * item.quantity).toFixed(2) %>
+              </div>
+              <div class="item-actions">
+                <form action="/remove-from-cart" method="POST">
+                  <input type="hidden" name="productId" value="<%= item.id %>">
+                  <button type="submit" class="btn-danger">Remove</button>
+                </form>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+        
+        <div class="cart-summary">
+          <h3>Order Summary</h3>
+          <div class="summary-line">
+            <span>Subtotal:</span>
+            <span>$<%= subtotal %></span>
+          </div>
+          <div class="summary-line">
+            <span>Tax:</span>
+            <span>$<%= tax %></span>
+          </div>
+          <div class="summary-line">
+            <span>Shipping:</span>
+            <span><%= shipping === '0.00' ? 'FREE' : '$' + shipping %></span>
+          </div>
+          <div class="summary-line total-line">
+            <span><strong>Total:</strong></span>
+            <span><strong>$<%= total %></strong></span>
+          </div>
+          
+          <div class="cart-actions">
+            <a href="/" class="btn-secondary">Continue Shopping</a>
+            <a href="/checkout" class="btn-primary">Proceed to Checkout</a>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 The Tech Store. Premium electronics for everyone.</p>
+  </footer>
+</body>
+</html>

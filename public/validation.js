@@ -125,7 +125,7 @@ function validateInput(e) {
         const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
         if (!expiryRegex.test(value)) {
             isValid = false;
-            errorMessage = 'Please enter a valid expiry date (MM/YY)';
+            errorMessage = 'Please enter a valid expiration date (MM/YY)';
         } else {
             // Check current date
             const [month, year] = value.split('/');
@@ -138,7 +138,7 @@ function validateInput(e) {
             
             if (enteredYear < currentYear || (enteredYear === currentYear && enteredMonth < currentMonth)) {
                 isValid = false;
-                errorMessage = 'Expiry date cannot be in the past';
+                errorMessage = 'Expiration date cannot be in the past';
             }
         }
     }

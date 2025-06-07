@@ -8,7 +8,7 @@ To start the application, ensure you have Node.js installed, then run `npm insta
 
 My purpose for developing this software was to gain hands-on experience with modern web development frameworks, learn session management, implement form validation, and understand the architecture of e-commerce applications. This project helped me understand server-side JavaScript, template engines, and responsive web design principles.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/YD-LfThE85s)
 
 # Web Pages
 

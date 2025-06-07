@@ -6,8 +6,6 @@ The site includes features such as: product listings, detailed product pages, sh
 
 To start the application, ensure you have Node.js installed, then run `npm install` to install dependencies followed by `npm start` to launch the development server. Open your browser to `http://localhost:3000` to view the application homepage and begin exploring the product catalog.
 
-My purpose for developing this software was to gain hands-on experience with modern web development frameworks, learn session management, implement form validation, and understand the architecture of e-commerce applications. This project helped me understand server-side JavaScript, template engines, and responsive web design principles.
-
 [Software Demo Video](https://youtu.be/YD-LfThE85s)
 
 # Web Pages
